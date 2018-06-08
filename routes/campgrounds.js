@@ -63,6 +63,7 @@ router.post("/", middleware.isLoggedIn, upload.single("image"), function(req, re
       if(err) {
           console.log(err);
       } else {
+        console.log(data);
         req.body.campground.lat = data.results[0].geometry.location.lat;
         req.body.campground.lng = data.results[0].geometry.location.lng;
         req.body.campground.location = data.results[0].formatted_address;
