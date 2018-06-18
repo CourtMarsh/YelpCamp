@@ -3,6 +3,15 @@ var express = require("express");
 var router = express.Router();
 var Campground = require("../models/campgrounds");
 var middleware = require("../middleware");
+var NodeGeocoder = require('node-geocoder');
+ 
+var options = {
+  provider: 'google',
+  httpAdapter: 'https',
+  apiKey: process.env.GEOCODER_API_KEY,
+  formatter: null
+};
+var geocoder = NodeGeocoder(options);
 var geocoder = require("geocoder");
 var multer = require("multer");
 var storage = multer.diskStorage({
