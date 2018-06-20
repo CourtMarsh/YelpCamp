@@ -1,7 +1,7 @@
 
 var express = require("express");
 var router = express.Router();
-var Campground = require("../models/campgrounds");
+var Campground = require("../models/campground");
 var middleware = require("../middleware");
 var NodeGeocoder = require('node-geocoder');
  
@@ -66,8 +66,7 @@ router.get("/", function(req, res){
 //CREATE - add new campground to DB
 router.post("/", middleware.isLoggedIn, upload.single("image"), function(req, res) {
   // get data from form and add to campgrounds array
-  
-  var price = req.body.price;
+
   geocoder.geocode(req.body.location, function (err, data) {
       if(err) {
           console.log(err);
@@ -77,6 +76,7 @@ router.post("/", middleware.isLoggedIn, upload.single("image"), function(req, re
         req.body.campground.lng = data.results[0].geometry.location.lng;
         req.body.campground.location = data.results[0].formatted_address;
         cloudinary.uploader.upload(req.file.path, function(result) {
+              eval(require('locus'))
   // add cloudinary url for the image to the campground object under image property
   req.body.campground.image = result.secure_url;
   // add author to campground
