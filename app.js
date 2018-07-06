@@ -20,10 +20,10 @@ var     commentRoutes    = require("./routes/comments"),
         campgroundRoutes = require("./routes/campgrounds"),
         indexRoutes      = require("./routes/index")
 
-mongoose.connect("mongodb://Court:hookem4life@ds139438.mlab.com:39438/courtsyelpcamp");
+// mongoose.connect("mongodb://Court:hookem4life@ds139438.mlab.com:39438/courtsyelpcamp");
 // mongoose.connect("mongodb://localhost/yelp_camp");
-//var url = process.env.DATABASEURL || "mongodb://localhost/yelp_camp";
-//mongoose.connect("url");
+var url = process.env.DATABASEURL || "mongodb://localhost/yelp_camp";
+mongoose.connect(url);
 
 
 app.use(bodyParser.urlencoded({extended: true}));
